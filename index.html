@@ -1,0 +1,282 @@
+  <!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Rock-Paper-Scissors</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="common.css" type="text/css">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    </head>
+    <body>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h6 class="masthead-brand">Rock-Paper-Scissors Game!</h6>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="">Home</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="container">
+      <div class = "col"><h1><span id="winner"></h1></div>
+       </div>
+
+      <div class="hovereffect">
+        <div class="row">
+          <div class="col-sm">
+            <button onclick="game(this.id)" type="button" class="btn btn-outline-success" id="0">
+          <img class="rounded-circle" src="assets/rock.png" height="100px">
+        </button>
+         </div>
+          <div class="col-sm">
+            <button onclick="game(this.id)" type="button" class="btn btn-outline-primary" id="1">
+          <img class="rounded-circle" src="assets/papper.png" height="100px">
+        </button>
+        </div>
+          <div class="col-sm">
+            <button onclick="game(this.id)" type="button" class="btn btn-outline-danger" id="2">
+          <img class="rounded-circle" src="assets/scis.png" height="100px">
+        </button>
+        </div>
+      </div>
+    </div>
+
+      <main role="main" class="inner cover">
+        <div class="container">
+          <div class = "row">
+            <div class = "col-12"><p class="lead">Traditional Rock-Paper-Scissors game playable against computer!</p></div>
+
+            <div class = "col-12">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" value="Fast">1
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" value="Fast">
+                  <li onclick="dropdown(this.innerHTML);">1</li>
+                  <li onclick="dropdown(this.innerHTML);">100</li>
+                  <li onclick="dropdown(this.innerHTML);">300</li>
+                  <li onclick="dropdown(this.innerHTML);">500</li>
+                  <li onclick="dropdown(this.innerHTML);">1000</li>
+                </ul>
+            </div>
+          </div>
+
+           <div class = "col-6"><h3><span id="youselected"></span></h3> </div>
+           <div class = "col-6"><h3><span id="comselected"></span></h3> </div>
+         </div>
+       </div>
+         <div class = "row">
+          <div class = "col-6"><p>User played</p></div>
+          <div class = "col-6"><p>Computer played</p> </div>
+        </div>
+          <div class = "row">
+            <div class = "col-3"><h3><span id="wincount"></span></h3> </div>
+            <div class = "col-3"><h3><span id="drawcount"></span></h3> </div>
+            <div class = "col-3"><h3><span id="losecount"></span></h3> </div>
+            <div class = "col-3"><h3><span id="totalcnt"></span></h3> </div>
+        </div>
+        <div class = "row">
+          <div class = "col-3"><h3><span id="winperc"></span></h3> </div>
+          <div class = "col-3"><h3><span id="drwperc"></span></h3> </div>
+          <div class = "col-3"><h3><span id="losperc"></span></h3> </div>
+          <div class = "col-3"><h3><span id="ttlper"></span></h3> </div>
+      </div>
+        <div class = "row">
+          <canvas id="myPieChart"></canvas>
+        </div>
+      <div class = "row">
+        <div class = "col">
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col-1"><h4>#</h4></th>
+              <th scope="col-4"><h4>You</h4></th>
+              <th scope="col-4"><h4>Computer</h4></th>
+              <th scope="col-3"><h4>Result</h4></th>
+            </tr>
+          </thead>
+          <tbody>
+            <th>
+            <div class="container">
+                    <div class="col-1">
+                      <h4><span id="rowtable"</span></h4>
+                    </div>
+              </div>
+            </th>
+            <th>
+            <div class="container">
+                    <div class="col-1">
+                      <h4><span id="userowtable"</span></h4>
+                    </div>
+              </div>
+            </th>
+            <th>
+            <div class="container">
+                    <div class="col-1">
+                      <h4><span id="comptable"</span></h4>
+                    </div>
+              </div>
+            </th>
+            <th>
+            <div class="container">
+                    <div class="col-1">
+                      <h4><span id="restable"</span></h4>
+                    </div>
+              </div>
+            </th>
+
+          </tbody>
+        </table>
+      </div>
+
+      </main>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.0/Chart.min.js"></script>
+
+      <script type="text/javascript">
+      var nofroll = 1;
+      function dropdown(val) {
+          var y = document.getElementsByClassName('btn btn-info dropdown-toggle');
+          var aNode = y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
+          nofroll = val;
+        }
+
+        var wincnt = 0;
+        var loscnt = 0;
+        var drwcnt = 0;
+        var totalgames = 0;
+        var index2 = 0;
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+        var ctx = document.getElementById("myPieChart");
+
+        var historyar = new Array()
+        var userarr = new Array()
+        var comparr = new Array ()
+        var resarray = new Array ()
+
+        function game(clicked_id){
+          // nofroll
+
+            var userarray = new Array(Number(nofroll));
+
+            for (var index=0; index<userarray.length; index++){
+              totalgames++
+              index2++;
+              document.getElementById('youselected').innerHTML = document.getElementById(clicked_id).innerHTML; //display of user's desicion
+              var cnumber = Math.floor((Math.random() * 3));
+              document.getElementById('comselected').innerHTML =  document.getElementById(cnumber).innerHTML;
+              var userpicked;
+              if (clicked_id<1) userpicked="Rock"
+              else if (clicked_id<2) userpicked="Paper"
+              else if (clicked_id<3) userpicked="Scissors"
+              var comppicked;
+              if (cnumber<1) comppicked="Rock"
+              else if (cnumber<2) comppicked="Paper"
+              else if (cnumber<3) comppicked="Scissors"
+
+              if(clicked_id.indexOf(cnumber)>-1 )  {
+                document.getElementById("winner").style.color = "yellow";
+                document.getElementById('winner').innerHTML = "It's a draw!"
+                historyar[index2] =  totalgames+ "\n\n"  //  ") " +userpicked+ " vs " +comppicked +" Draw."
+                userarr[index2] = userpicked+ "\n\n"
+                comparr[index2] = comppicked+ "\n\n"
+                resarray[index2] = "Draw.\n\n"
+                drwcnt++
+              }
+
+              else if (clicked_id-cnumber<-1 || clicked_id-cnumber==1) {
+                document.getElementById("winner").style.color ="#4dd30e";
+                document.getElementById('winner').innerHTML = "You won!"
+                historyar[index2] =   totalgames+ "\n\n"  //") " + userpicked+ " vs " +comppicked +" Won."
+                userarr[index2] = userpicked+ "\n\n"
+                comparr[index2] = comppicked+ "\n\n"
+                resarray[index2] = "Won.\n\n"
+                wincnt++
+              }
+
+              else if (clicked_id-cnumber>1 || clicked_id-cnumber==-1) {
+                document.getElementById("winner").style.color = "red";
+                document.getElementById('winner').innerHTML = "You lost!"
+                historyar[index2] =   totalgames+ "\n\n"  //") " + userpicked+ " vs " +comppicked +" Lost."
+                userarr[index2] = userpicked+ "\n\n"
+                comparr[index2] = comppicked+ "\n\n"
+                resarray[index2] = "Lose.\n\n"
+                loscnt++
+              }
+
+
+            }
+
+
+            var store1 =wincnt
+            var store2 =drwcnt
+            var store3 =  loscnt
+            var myPieChart = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: ["Win", "Draw", "Lose"],
+                datasets: [{
+                  data: [store1, store2, store3],
+                  backgroundColor: ['#4dd30e', 'yellow', 'red'],
+                  hoverBackgroundColor: ['#4dd30e', 'yellow', 'red'],
+                  borderColor: '#333'
+                    }],
+                  },
+              });
+
+                document.getElementById('wincount').innerHTML = "w: " +wincnt
+                document.getElementById("wincount").style.color ="#4dd30e";
+                document.getElementById('winperc').innerHTML = "(" +Math.round((100*wincnt)/totalgames)+ "%)"
+                document.getElementById("winperc").style.color ="#4dd30e";
+
+                document.getElementById('losecount').innerHTML = "l: " +loscnt
+                document.getElementById("losecount").style.color = "red";
+                document.getElementById('losperc').innerHTML = "(" +Math.round((100*loscnt)/totalgames)+ "%)"
+                document.getElementById("losperc").style.color = "red";
+
+                document.getElementById('drawcount').innerHTML = "d: " +drwcnt
+                document.getElementById("drawcount").style.color = "yellow";
+                document.getElementById('drwperc').innerHTML = "(" +Math.round((100*drwcnt)/totalgames)+ "%)"
+                document.getElementById("drwperc").style.color = "yellow";
+
+                document.getElementById('totalcnt').innerHTML = "t: " +totalgames // nofroll
+                document.getElementById('ttlper').innerHTML = "(" +Math.round((100*totalgames)/totalgames)+ "%)"
+
+
+                document.getElementById('rowtable').innerHTML = historyar.join(" ")  // nofroll
+                document.getElementById('userowtable').innerHTML = userarr.join(" ")
+                document.getElementById('comptable').innerHTML = comparr.join(" ")
+                document.getElementById('restable').innerHTML = resarray.join(" ")
+
+          }
+
+
+
+      </script>
+
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Classical Rock-Paper-Scissors game, by <a href="https://github.com/wodsuz">@wodsuz.</a></p>
+        </div>
+      </footer>
+    </div>
+
+
+</body>
+<!-- Page level custom scripts -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
